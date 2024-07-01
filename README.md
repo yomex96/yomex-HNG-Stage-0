@@ -1,6 +1,6 @@
 This is my submission for the HNG DevOps Stage 0 Task
 
-it is a simple static website (html,javascript & css) deployed on NGINX server on AWS EC2
+it is a simple static website (html,javascript & css) deployed on NGINX server using AWS EC2
 
 
 ### Set up an AWS EC2 instance
