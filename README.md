@@ -94,6 +94,8 @@ $ sudo mv yomex-HNG-Stage-0/index.html   /var/www/html
 $ sudo mv  yomex-HNG-Stage-0/style.css & script.js      / var/www/html
 
 N.B: The html file must be called index.html
-7. Restart
+
+7. Restart nginx
+   
 Then, restart the nginx server with
 $ sudo systemctl restart nginx
