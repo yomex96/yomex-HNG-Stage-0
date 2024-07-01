@@ -34,38 +34,34 @@ sudo apt update
 ```
 3. Install Git - [Guide by DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-22-04) 
 
+### Deploying the static website 
 
-### Deploying the project on AWS
-
-1. Clone this project in the remote VM
-```
-git clone https://github.com/verma-kunal/AWS-Session.git
-```
-
-Step 1: Create your instance
+1. Create your instance
 Create a regular EC2 instance (mine was AWS EC2 Amazon Linux 2 free tier)
 💡
 Remember to create Key Pair for external SSH
 For the inbound rules, use port 80 (and port 22 for SSH) from anywhere
 After creating the instance, SSH into it. You can do that directly from the Management Console with the Connect button after creating the instance.
-Step 2: Start the NGINX Server in the instance
+
+2. Start the NGINX Server in the instance
+
 Install and update nginx to your instance 
-sudo apt update &&  sudo apt install nginx -y
-​
-Start & enable nginx
-sudo systemctl start nginx
-sudo systemctl enable nginx
-​
-Step 3: Move Git Repo into server
-Install Git in the server
-sudo yum install git -y
+$: sudo apt update &&  sudo apt install nginx -y
+
+$: Start & enable nginx
+$: sudo systemctl start nginx
+$: sudo systemctl enable nginx
+$: sudo systemctl status nginx
+
+3. Move Git Repo into server
 ​
 Clone your GitHub repo
-git clone {paste your repo link here}
+$: git clone https://github.com/yomex96/yomex-HNG-Stage-0.git
 ​
-Now you have to check the configuratiion of the nginx in your server through:
-cd etc/nginx/nginx.conf 
-​
+
+4. Configure the  nginx in your server 
+ nginx in your server ​
+
 Within the file look for a block of code similar to this:
 server {
     listen       80;
@@ -83,13 +79,21 @@ server {
     error_page 500 502 503 504 /50x.html;
     location = /50x.html {
     }
-​
+
+5. check and Reload 
+
+$ sudo nginx -t
+
+$ sudo systemctl reload nginx​
+
+6. move the files 
+
 That root part should be noted down.
 Move the files from your repo folder into that folder using:
-sudo mv your-repo-name/index.html {paste your root folder here}
-sudo mv your-repo-name/{paste your css file name here}/ {paste your root folder path found in the ngnx confiig file here}
-​
-💡
+$ sudo mv yomex-HNG-Stage-0/index.html   /var/www/html
+$ sudo mv  yomex-HNG-Stage-0/style.css & script.js      / var/www/html
+
 the html file must be called index.html
+7. Restart
 Then, restart the nginx server with:
-sudo systemctl restart nginx
+$: sudo systemctl restart nginx
