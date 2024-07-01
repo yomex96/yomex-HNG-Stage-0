@@ -48,7 +48,7 @@ After creating the instance, SSH into it. You can do that directly from the Mana
 Install and update nginx to your instance 
 $: sudo apt update &&  sudo apt install nginx -y
 
-$: Start & enable nginx
+Start, enable and check  nginx status 
 $: sudo systemctl start nginx
 $: sudo systemctl enable nginx
 $: sudo systemctl status nginx
@@ -93,7 +93,7 @@ Move the files from your repo folder into that folder using:
 $ sudo mv yomex-HNG-Stage-0/index.html   /var/www/html
 $ sudo mv  yomex-HNG-Stage-0/style.css & script.js      / var/www/html
 
-the html file must be called index.html
+N.B: The html file must be called index.html
 7. Restart
 Then, restart the nginx server with
-$: sudo systemctl restart nginx
+$ sudo systemctl restart nginx
