@@ -2,15 +2,6 @@ This is my submission for the HNG DevOps Stage 0 Task
 
 it is a simple static website (html,javascript & css) deployed on NGINX server on AWS EC2
 
-# Deploying a Simple Static Website Deployed on NGINX Server on AWS EC2
-
-### Testing the project locally
-
-1. Clone this project
-```
-git clone https://github.com/verma-kunal/AWS-Session.git
-```
-
 
 ### Set up an AWS EC2 instance
 
@@ -30,36 +21,41 @@ ssh -i instance.pem ubunutu@<IP_ADDRESS>
 
 1. Updating the outdated packages and dependencies
 ```
-sudo apt update
+$ sudo apt update
 ```
 3. Install Git - [Guide by DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-22-04) 
 
 ### Deploying the static website 
 
 1. Create your instance
-Create a regular EC2 instance (mine was AWS EC2 Amazon Linux 2 free tier)
-💡
+Create a regular EC2 instance (mine was AWS EC2 Ubuntu free tier)
+
 Remember to create Key Pair for external SSH
+
 For the inbound rules, use port 80 (and port 22 for SSH) from anywhere
+
 After creating the instance, SSH into it. You can do that directly from the Management Console with the Connect button after creating the instance.
 
-2. Start the NGINX Server in the instance
+3. Start the NGINX Server in the instance
 
 Install and update nginx to your instance 
-$: sudo apt update &&  sudo apt install nginx -y
+
+$ sudo apt update &&  sudo apt install nginx -y
 
 Start, enable and check  nginx status 
-$: sudo systemctl start nginx
-$: sudo systemctl enable nginx
-$: sudo systemctl status nginx
 
-3. Move Git Repo into server
-​
-Clone your GitHub repo
-$: git clone https://github.com/yomex96/yomex-HNG-Stage-0.git
+$ sudo systemctl start nginx
+
+$ sudo systemctl enable nginx
+
+$ sudo systemctl status nginx
+
+3. Move Git Repo into server / Clone your GitHub repo
+
+$ git clone https://github.com/yomex96/yomex-HNG-Stage-0.git
 ​
 
-4. Configure the  nginx in your server 
+5. Configure the  nginx in your server 
  nginx in your server ​
 
 Within the file look for a block of code similar to this:
@@ -80,7 +76,7 @@ server {
     location = /50x.html {
     }
 
-5. check and Reload 
+5. check if nginx is installed properly and Reload 
 
 $ sudo nginx -t
 
@@ -89,13 +85,15 @@ $ sudo systemctl reload nginx​
 6. move the files 
 
 That root part should be noted down.
-Move the files from your repo folder into that folder using:
+Move the files from your repo folder into that folder using
+
 $ sudo mv yomex-HNG-Stage-0/index.html   /var/www/html
+
 $ sudo mv  yomex-HNG-Stage-0/style.css & script.js      / var/www/html
 
 N.B: The html file must be called index.html
 
 7. Restart nginx
+   Then, restart the nginx server with
    
-Then, restart the nginx server with
 $ sudo systemctl restart nginx
