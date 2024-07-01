@@ -58,6 +58,8 @@ $ git clone https://github.com/yomex96/yomex-HNG-Stage-0.git
 5. Configure the  nginx in your server 
  nginx in your server ​
 
+$ sudo vi /etc/nginx/sites-available/default
+
 Within the file look for a block of code similar to this:
 server {
     listen       80;
